@@ -1,0 +1,16 @@
+<root>
+    <TreeNodesModel>
+        <Condition ID="Ball_detected"/>
+        <Action ID="Follow_point">
+            <input_port name="in">Punto percibido de la bola al que moverse</input_port>
+        </Action>
+        <Condition ID="Is_distance_N">
+            <input_port name="N" default="1">Distance to compare with</input_port>
+        </Condition>
+        <Action ID="Perceive_ball">
+            <output_port name="info">Extrae info de la posicion de la bola</output_port>
+        </Action>
+        <Action ID="Turn"/>
+    </TreeNodesModel>
+</root>
+
