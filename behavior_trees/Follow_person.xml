@@ -1,14 +1,22 @@
-<root>
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <ReactiveSequence>
+            <ReactiveFallback name="Search_person">
+                <Condition ID="Person_detected"/>
+                <Action ID="Turn"/>
+            </ReactiveFallback>
+            <Sequence name="Movement">
+                <Action ID="Perceive_person" info="{info}"/>
+                <Action ID="Follow_point" in="{info}"/>
+            </Sequence>
+        </ReactiveSequence>
+    </BehaviorTree>
+    <!-- ////////// -->
     <TreeNodesModel>
-        <Condition ID="Ball_detected"/>
         <Action ID="Follow_point">
             <input_port name="in">Punto percibido de la bola al que moverse</input_port>
-        </Action>
-        <Condition ID="Is_distance_N">
-            <input_port name="N" default="1">Distance to compare with</input_port>
-        </Condition>
-        <Action ID="Perceive_ball">
-            <output_port name="info">Extrae info de la posicion de la bola</output_port>
         </Action>
         <Action ID="Perceive_person">
             <output_port name="info">Informacion devuelta sobre la persona detectada</output_port>
@@ -16,5 +24,6 @@
         <Condition ID="Person_detected"/>
         <Action ID="Turn"/>
     </TreeNodesModel>
+    <!-- ////////// -->
 </root>
 
