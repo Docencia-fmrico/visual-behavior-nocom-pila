@@ -1,9 +1,6 @@
 #include <string>
 
-#include "behavior_trees/CheckBattery.h"
-
-#include "behaviortree_cpp_v3/behavior_tree.h"
-#include "behaviortree_cpp_v3/bt_factory.h"
+#include "fsm_visual_behavior/Turn.h"
 
 #include "ros/ros.h"
 
@@ -25,7 +22,6 @@ BT::NodeStatus
 Turn::tick()
 {
     ROS_INFO("Turn tick");
-    turn_ts_ = ros::Time::now();
 
     geometry_msgs::Twist msg;
     msg.angular.z = 0.35;
@@ -34,4 +30,5 @@ Turn::tick()
     ROS_INFO("Turning");
 
     return BT::NodeStatus::RUNNING;
+}
 }
