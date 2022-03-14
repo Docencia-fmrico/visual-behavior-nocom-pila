@@ -10,6 +10,7 @@ namespace behavior_trees
 Turn::Turn(const std::string& name)
 : BT::ActionNodeBase(name, {}), counter_(0)
 {
+  vel_pub_ = n_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
 }
 
 void
@@ -24,7 +25,7 @@ Turn::tick()
     ROS_INFO("Turn tick");
 
     geometry_msgs::Twist msg;
-    msg.angular.z = 0.35;
+    msg.angular.z = TURNING_SPEED;
     vel_pub_.publish(msg);
 
     ROS_INFO("Turning");

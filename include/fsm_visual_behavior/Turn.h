@@ -22,6 +22,8 @@ public:
     BT::NodeStatus tick();
 
 private:
+    const float TURNING_SPEED = 0.35;
+
     ros::NodeHandle n_;
     ros::Publisher vel_pub_;
 
