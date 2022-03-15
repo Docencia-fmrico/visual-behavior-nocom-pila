@@ -4,7 +4,7 @@
 
 #include "ros/ros.h"
 
-namespace behavior_trees
+namespace fsm_visual_behavior
 {
 
 Turn::Turn(const std::string& name)
@@ -28,8 +28,14 @@ Turn::tick()
     msg.angular.z = TURNING_SPEED;
     vel_pub_.publish(msg);
 
-    ROS_INFO("Turning");
+   
 
     return BT::NodeStatus::RUNNING;
 }
+}
+
+#include "behaviortree_cpp_v3/bt_factory.h"
+BT_REGISTER_NODES(factory)
+{
+  factory.registerNodeType<fsm_visual_behavior::Turn>("Turn");
 }
