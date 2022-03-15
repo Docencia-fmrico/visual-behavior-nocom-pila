@@ -9,7 +9,7 @@
 
 #include <string>
 
-namespace behavior_trees
+namespace fsm_visual_behavior
 {
 
 class Turn : public BT::ActionNodeBase

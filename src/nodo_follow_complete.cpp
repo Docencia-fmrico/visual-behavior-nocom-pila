@@ -36,14 +36,14 @@ int main(int argc, char **argv)
   factory.registerFromPlugin(loader.getOSName("nc_perceive_person"));
   factory.registerFromPlugin(loader.getOSName("nc_turn_node"));
   factory.registerFromPlugin(loader.getOSName("nc_follow_point"));
-  //factory.registerFromPlugin(loader.getOSName("nc_ball_detected"));
-  //factory.registerFromPlugin(loader.getOSName("nc_perceive_ball"));
+  factory.registerFromPlugin(loader.getOSName("nc_ball_detected"));
+  factory.registerFromPlugin(loader.getOSName("nc_perceive_ball"));
 
   auto blackboard = BT::Blackboard::create();
   blackboard->set("object", "cup");
 
   std::string pkgpath = ros::package::getPath("fsm_visual_behavior");
-  std::string xml_file = pkgpath + "/behavior_trees_xml/Follow_person.xml";
+  std::string xml_file = pkgpath + "/behavior_trees_xml/Follow_complete.xml";
 
   BT::Tree tree = factory.createTreeFromFile(xml_file, blackboard);
   auto publisher_zmq = std::make_shared<BT::PublisherZMQ>(tree, 10, 1666, 1667);

@@ -16,32 +16,14 @@ endif()
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  roslint
-  sensor_msgs
   std_msgs
-  tf
-  cv_bridge
-  image_transport
-  pcl_conversions
-  pcl_ros
-  darknet_ros_msgs
+  geometry_msgs
   behaviortree_cpp_v3
+  roslint
 )
 
-find_package(OpenCV)
-include_directories(${OpenCV_INCLUDE_DIRS})
-
 catkin_package(
-CATKIN_DEPENDS   
-  roscpp
-  sensor_msgs
-  std_msgs
-  tf
-  cv_bridge
-  image_transport
-  pcl_conversions
-  pcl_ros
-  behaviortree_cpp_v3
+CATKIN_DEPENDS roscpp std_msgs behaviortree_cpp_v3
 )
 
 include_directories(
@@ -50,18 +32,18 @@ include_directories(
   ${ZMQ_INCLUDE_DIRS}
 )
 
-add_library("nc_person_detected_node" SHARED src/fsm_visual_behavior/Person_detected.cpp)
-add_library("nc_ball_detected_node" SHARED src/fsm_visual_behavior/Ball_detected.cpp)
-add_library("nc_perceive_person_node" SHARED src/fsm_visual_behavior/Perceive_person.cpp)
-add_library("nc_perceive_ball_node" SHARED src/fsm_visual_behavior/Perceive_ball.cpp)
-add_library("nc_follow_point_node" SHARED src/fsm_visual_behavior/Follow_point.cpp)
-add_library("nc_turn_node" SHARED src/fsm_visual_behavior/Turn.cpp)
+add_library(nc_person_detected SHARED src/fsm_visual_behavior/Person_detected.cpp)
+add_library(nc_perceive_person SHARED src/fsm_visual_behavior/Perceive_person.cpp)
+add_library(nc_ball_detected SHARED src/fsm_visual_behavior/Ball_detected.cpp)
+add_library(nc_perceive_ball SHARED src/fsm_visual_behavior/Perceive_ball.cpp)
+add_library(nc_follow_point SHARED src/fsm_visual_behavior/Follow_point.cpp)
+add_library(nc_turn_node SHARED src/fsm_visual_behavior/Turn.cpp)
 list(APPEND plugin_libs
-  nc_person_detected_node
-  nc_ball_detected_node
-  nc_perceive_person_node
-  nc_perceive_ball_node
-  nc_follow_point_node
+  nc_person_detected
+  nc_perceive_person
+  nc_ball_detected
+  nc_perceive_ball
+  nc_follow_point
   nc_turn_node
 )
 
@@ -75,14 +57,25 @@ add_executable(nodo_follow_person
 )
 target_link_libraries(nodo_follow_person ${catkin_LIBRARIES} ${ZMQ_LIBRARIES})
 
+add_executable(nodo_follow_ball 
+  src/nodo_follow_ball.cpp
+)
+target_link_libraries(nodo_follow_ball ${catkin_LIBRARIES} ${ZMQ_LIBRARIES})
+
+add_executable(nodo_follow_complete 
+  src/nodo_follow_complete.cpp
+)
+target_link_libraries(nodo_follow_complete ${catkin_LIBRARIES} ${ZMQ_LIBRARIES})
+
 
 roslint_cpp(
-  src/nodo_follow_person
-  include/fsm_visual_behavior/Person_detected.h  src/fsm_visual_behavior/Person_detected.cpp
-  include/fsm_visual_behavior/Ball_detected.h  src/fsm_visual_behavior/Ball_detected.cpp
-  include/fsm_visual_behavior/Perceive_person.h  src/fsm_visual_behavior/Perceive_person.cpp
-  include/fsm_visual_behavior/Perceive_ball.h  src/fsm_visual_behavior/Perceive_ball.cpp
-  include/fsm_visual_behavior/Follow_point.h  src/fsm_visual_behavior/Follow_point.cpp
-  include/fsm_visual_behavior/Turn.h  src/fsm_visual_behavior/Turn.cpp
-
+  src/nodo_follow_ball.cpp
+  src/nodo_follow_person.cpp
+  src/nodo_follow_complete.cpp
+  include/fsm_visual_behavior/Person_detected.h src/fsm_visual_behavior/Person_detected.cpp
+  include/fsm_visual_behavior/Perceive_person.h src/fsm_visual_behavior/Perceive_person.cpp
+  include/fsm_visual_behavior/Ball_detected.h src/fsm_visual_behavior/Ball_detected.cpp
+  include/fsm_visual_behavior/Perceive_ball.h src/fsm_visual_behavior/Perceive_ball.cpp
+  include/fsm_visual_behavior/Follow_point.h src/fsm_visual_behavior/Follow_point.cpp
+  include/fsm_visual_behavior/Turn.h src/fsm_visual_behavior/Turn.cpp
 )
