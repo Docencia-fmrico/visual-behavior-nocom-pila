@@ -3,9 +3,12 @@
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
+
 #include <string>
 #include "ros/ros.h"
+
 #include <sensor_msgs/Image.h>
+#include "std_msgs/Bool.h"
 #include <darknet_ros_msgs/BoundingBoxes.h>
 
 namespace fsm_visual_behavior
@@ -20,12 +23,13 @@ public:
 
     BT::NodeStatus tick();
 
+    void PersonCallback(const std_msgs::Bool::ConstPtr& msg);
 private:
 
-    ros::NodeHandle n_;
-    ros::Subscriber sub_darknet_;
+    ros::NodeHandle nh_;
+    ros::Subscriber if_person_;
 
-    int counter_;
+    bool person_;
 };
 
 

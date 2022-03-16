@@ -5,6 +5,7 @@
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
+#include "kobuki_msgs/BumperEvent.h"
 #include "geometry_msgs/Twist.h"
 
 #include <string>

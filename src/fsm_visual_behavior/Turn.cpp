@@ -10,7 +10,7 @@ namespace fsm_visual_behavior
 Turn::Turn(const std::string& name)
 : BT::ActionNodeBase(name, {}), counter_(0)
 {
-  vel_pub_ = n_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
+  vel_pub_ = n_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 1);
 }
 
 void
