@@ -10,7 +10,7 @@ namespace fsm_visual_behavior
 Perceive_person::Perceive_person(const std::string& name)
 : BT::ActionNodeBase(name, {}), counter_(0)
 {
-  vel_pub_ = n_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
+  //vel_pub_ = n_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
 }
 
 void
@@ -23,10 +23,6 @@ BT::NodeStatus
 Perceive_person::tick()
 {
     ROS_INFO("Perceive_person tick");
-
-    geometry_msgs::Twist msg;
-    msg.angular.z = TURNING_SPEED;
-    vel_pub_.publish(msg);
 
    
 

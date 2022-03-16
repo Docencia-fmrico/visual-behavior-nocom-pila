@@ -37,6 +37,7 @@ catkin_package(
 CATKIN_DEPENDS 
   roscpp 
   std_msgs 
+  kobuki_msgs
   behaviortree_cpp_v3 
   sensor_msgs 
   tf
@@ -87,11 +88,14 @@ add_executable(nodo_follow_complete
 )
 target_link_libraries(nodo_follow_complete ${catkin_LIBRARIES} ${ZMQ_LIBRARIES})
 
+add_executable(nodo_bbx_ src/fsm_visual_behavior/nodo_bbx_.cpp)
+target_link_libraries(nodo_bbx_ ${catkin_LIBRARIES})
 
 roslint_cpp(
   src/nodo_follow_ball.cpp
   src/nodo_follow_person.cpp
   src/nodo_follow_complete.cpp
+  src/fsm_visual_behavior/nodo_bbx_.cpp
   include/fsm_visual_behavior/Person_detected.h src/fsm_visual_behavior/Person_detected.cpp
   include/fsm_visual_behavior/Perceive_person.h src/fsm_visual_behavior/Perceive_person.cpp
   include/fsm_visual_behavior/Ball_detected.h src/fsm_visual_behavior/Ball_detected.cpp

@@ -1,19 +1,16 @@
-#include <string>
-
 #include "fsm_visual_behavior/Ball_detected.h"
-
 #include "behaviortree_cpp_v3/behavior_tree.h"
 
-#include "geometry_msgs/Twist.h"
 #include "ros/ros.h"
+#include "std_msgs/Bool.h"
 
 namespace fsm_visual_behavior
 {
 
 Ball_detected::Ball_detected(const std::string& name)
-: BT::ActionNodeBase(name, {}), counter_(0)
+: BT::ActionNodeBase(name, {}), ball_(false)
 {
-  vel_pub_ = n_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
+  if_ball_ = nh_.subscribe("/ball_detected", 1, &Ball_detected::BallCallback, this);
 }
 
 void
@@ -27,16 +24,27 @@ Ball_detected::tick()
 {
     ROS_INFO("Ball_detected tick");
 
-    geometry_msgs::Twist msg;
-    msg.angular.z = TURNING_SPEED;
-    vel_pub_.publish(msg);
+    if(ball_)
+    {
+    ROS_INFO("SUCCESS");
+      return BT::NodeStatus::SUCCESS;
+    }
+    else
+    {
+    ROS_INFO("FAILURE");
+      return BT::NodeStatus::FAILURE;
+    }
+  }
 
-    
-
-    return BT::NodeStatus::SUCCESS;
+void 
+Ball_detected::BallCallback(const std_msgs::Bool::ConstPtr& msg)
+{
+  ball_ = msg->data; //std_msgs::Bool::data; // Updates the variable "ball_"
 }
 
 }  // namespace fsm_visual_behavior
+
+
 
 #include "behaviortree_cpp_v3/bt_factory.h"
 BT_REGISTER_NODES(factory)

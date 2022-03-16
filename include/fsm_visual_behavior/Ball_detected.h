@@ -5,8 +5,11 @@
 #include "behaviortree_cpp_v3/bt_factory.h"
 
 #include <string>
-
 #include "ros/ros.h"
+
+#include <sensor_msgs/Image.h>
+#include "std_msgs/Bool.h"
+#include <darknet_ros_msgs/BoundingBoxes.h>
 
 namespace fsm_visual_behavior
 {
@@ -20,16 +23,20 @@ public:
 
     BT::NodeStatus tick();
 
+    void BallCallback(const std_msgs::Bool::ConstPtr& msg);
 private:
-    const float TURNING_SPEED = 0.35;
 
-    ros::NodeHandle n_;
-    ros::Publisher vel_pub_;
+    ros::NodeHandle nh_;
+    ros::Subscriber if_ball_;
 
-    int counter_;
+    bool ball_;
 };
 
 
 }  // namespace behavior_trees
 
 #endif  // BEHAVIOR_TREES_BALL_DETECTED_H
+
+
+
+

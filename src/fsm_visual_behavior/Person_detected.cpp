@@ -1,15 +1,16 @@
 #include "fsm_visual_behavior/Person_detected.h"
 #include "behaviortree_cpp_v3/behavior_tree.h"
 
+#include "ros/ros.h"
+#include "std_msgs/Bool.h"
 
 namespace fsm_visual_behavior
 {
 
 Person_detected::Person_detected(const std::string& name)
-: BT::ActionNodeBase(name, {}), counter_(0)
+: BT::ActionNodeBase(name, {}), person_(false)
 {
-
-  //sub_darknet_ = n_.subscribe("/darknet_ros/bounding_boxes", 1, &Person_detected::tick, this);
+  if_person_ = nh_.subscribe("/person_detected", 1, &Person_detected::PersonCallback, this);
 }
 
 void
@@ -23,27 +24,27 @@ Person_detected::tick()
 {
     ROS_INFO("Person_detected tick");
 
-    const darknet_ros_msgs::BoundingBoxesConstPtr boxes;
-    
-    for (const auto & box : boxes->bounding_boxes) {
-    int px = (box.xmax + box.xmin) / 2;
-    int py = (box.ymax + box.ymin) / 2;
-
-    //float dist = img_ptr_depth->image.at<float>(cv::Point(px, py)) * 0.001f;
-    //std::cerr << box.Class << " at (" << dist << std::endl;
-    if(box.Class == "person")
+    if(person_)
     {
+    ROS_INFO("SUCCESS");
       return BT::NodeStatus::SUCCESS;
     }
     else
     {
+    ROS_INFO("FAILURE");
       return BT::NodeStatus::FAILURE;
     }
   }
-    
+
+void 
+Person_detected::PersonCallback(const std_msgs::Bool::ConstPtr& msg)
+{
+  person_ = msg->data; //std_msgs::Bool::data; // Updates the variable "person_"
 }
 
 }  // namespace fsm_visual_behavior
+
+
 
 #include "behaviortree_cpp_v3/bt_factory.h"
 BT_REGISTER_NODES(factory)
