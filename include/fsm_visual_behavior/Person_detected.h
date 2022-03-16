@@ -3,10 +3,10 @@
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
-
 #include <string>
-
 #include "ros/ros.h"
+#include <sensor_msgs/Image.h>
+#include <darknet_ros_msgs/BoundingBoxes.h>
 
 namespace fsm_visual_behavior
 {
@@ -21,10 +21,9 @@ public:
     BT::NodeStatus tick();
 
 private:
-    const float TURNING_SPEED = 0.35;
 
     ros::NodeHandle n_;
-    ros::Publisher vel_pub_;
+    ros::Subscriber sub_darknet_;
 
     int counter_;
 };

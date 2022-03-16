@@ -20,10 +20,30 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   behaviortree_cpp_v3
   roslint
+
+  sensor_msgs
+  tf
+  cv_bridge
+  image_transport
+  pcl_conversions
+  pcl_ros
+  darknet_ros_msgs
+
 )
+find_package(OpenCV)
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 catkin_package(
-CATKIN_DEPENDS roscpp std_msgs behaviortree_cpp_v3
+CATKIN_DEPENDS 
+  roscpp 
+  std_msgs 
+  behaviortree_cpp_v3 
+  sensor_msgs 
+  tf
+  cv_bridge
+  image_transport
+  pcl_conversions
+  pcl_ros
 )
 
 include_directories(
