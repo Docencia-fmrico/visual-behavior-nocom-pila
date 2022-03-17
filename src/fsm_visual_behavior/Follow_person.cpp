@@ -43,7 +43,7 @@ Follow_person::tick()
     //std::cerr << dist << std::endl;
 
     geometry_msgs::Twist msg;
-    if(0.5 < dist < 2.5)
+    if(0.75 < dist < 2.5)
     {
       if(point < 250)
       {
@@ -59,6 +59,25 @@ Follow_person::tick()
       {
         msg.linear.x = ADVANCE_SPEED;
         msg.angular.z = -TURNING_SPEED;
+      }
+      
+    }
+    if(0.75 > dist)
+    {
+      if(point < 250)
+      {
+        msg.linear.x = -ADVANCE_SPEED;
+        msg.angular.z = -TURNING_SPEED;
+      }
+      if( 250 <= point <= 350)
+      {
+        msg.linear.x = -ADVANCE_SPEED;
+        //msg.angular.z = TURNING_SPEED;
+      }
+      if(point > 350)
+      {
+        msg.linear.x = -ADVANCE_SPEED;
+        msg.angular.z = TURNING_SPEED;
       }
       
     }
