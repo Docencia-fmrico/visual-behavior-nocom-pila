@@ -1,12 +1,14 @@
 <root main_tree_to_execute = "MainTree" >
      <BehaviorTree ID="MainTree">
      <ReactiveFallback>
-        <ReactiveSequence name="root_sequence">ç
-            <ReactiveSequence name="root_sequence">
-                <Ball_detected   name="ball_detected"/>
-                <Perceive_ball   name="perceive_ball"/>
-                <Follow_ball   name="follow_ball"/>
-            </ReactiveSequence>
+        <ReactiveSequence name="root_sequence">
+            <Inverter>
+                <ReactiveSequence name="root_sequence">
+                    <Ball_detected   name="ball_detected"/>
+                    <Perceive_ball   name="perceive_ball"/>
+                    <Follow_ball   name="follow_ball"/>
+                </ReactiveSequence>
+            </Inverter>
             <Person_detected   name="person_detected"/>
             <Perceive_person   name="perceive_person"/>
             <Follow_person  name="follow_person"/>
