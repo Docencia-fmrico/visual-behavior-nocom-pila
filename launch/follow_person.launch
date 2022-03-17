@@ -1,0 +1,8 @@
+<launch>
+    <include file="$(find kobuki_node)/launch/minimal.launch"/>
+    <include file="$(find astra_camera)/launch/astra.launch"/>
+    <include file="$(find darknet_ros)/launch/darknet_ros.launch"/>
+
+	<node pkg="fsm_visual_behavior" type="nodo_follow_person" name="Follow_person" output="screen"/>
+    <node pkg="fsm_visual_behavior" type="nodo_bbx_" name="BBX" output="screen"/>
+</launch>
