@@ -6,7 +6,7 @@
                 <Turn   name="turn"/>
             </ReactiveFallback>
             <Perceive_ball   name="perceive_ball"/>
-            <Follow_point   name="follow_point"/>
+            <Follow_ball   name="follow_ball"/>
         </ReactiveSequence>
      </BehaviorTree>
  </root>

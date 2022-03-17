@@ -6,7 +6,7 @@
                 <Turn   name="turn"/>
             </ReactiveFallback>
             <Perceive_person   name="perceive_person"/>
-            <Follow_point   name="follow_point"/>
+            <Follow_person   name="follow_person"/>
         </ReactiveSequence>
      </BehaviorTree>
  </root>

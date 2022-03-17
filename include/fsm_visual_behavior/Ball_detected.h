@@ -9,7 +9,7 @@
 
 #include <sensor_msgs/Image.h>
 #include "std_msgs/Bool.h"
-#include <darknet_ros_msgs/BoundingBoxes.h>
+
 
 namespace fsm_visual_behavior
 {
@@ -36,7 +36,6 @@ private:
 }  // namespace behavior_trees
 
 #endif  // BEHAVIOR_TREES_BALL_DETECTED_H
-
 
 
 
