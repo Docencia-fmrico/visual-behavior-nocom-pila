@@ -57,14 +57,16 @@ add_library(nc_person_detected SHARED src/fsm_visual_behavior/Person_detected.cp
 add_library(nc_perceive_person SHARED src/fsm_visual_behavior/Perceive_person.cpp)
 add_library(nc_ball_detected SHARED src/fsm_visual_behavior/Ball_detected.cpp)
 add_library(nc_perceive_ball SHARED src/fsm_visual_behavior/Perceive_ball.cpp)
-add_library(nc_follow_point SHARED src/fsm_visual_behavior/Follow_point.cpp)
+add_library(nc_follow_person SHARED src/fsm_visual_behavior/Follow_person.cpp)
+add_library(nc_follow_ball SHARED src/fsm_visual_behavior/Follow_ball.cpp)
 add_library(nc_turn_node SHARED src/fsm_visual_behavior/Turn.cpp)
 list(APPEND plugin_libs
   nc_person_detected
   nc_perceive_person
   nc_ball_detected
   nc_perceive_ball
-  nc_follow_point
+  nc_follow_person
+  nc_follow_ball
   nc_turn_node
 )
 
@@ -100,6 +102,7 @@ roslint_cpp(
   include/fsm_visual_behavior/Perceive_person.h src/fsm_visual_behavior/Perceive_person.cpp
   include/fsm_visual_behavior/Ball_detected.h src/fsm_visual_behavior/Ball_detected.cpp
   include/fsm_visual_behavior/Perceive_ball.h src/fsm_visual_behavior/Perceive_ball.cpp
-  include/fsm_visual_behavior/Follow_point.h src/fsm_visual_behavior/Follow_point.cpp
+  include/fsm_visual_behavior/Follow_person.h src/fsm_visual_behavior/Follow_person.cpp
+  include/fsm_visual_behavior/Follow_ball.h src/fsm_visual_behavior/Follow_ball.cpp
   include/fsm_visual_behavior/Turn.h src/fsm_visual_behavior/Turn.cpp
 )

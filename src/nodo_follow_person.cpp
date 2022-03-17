@@ -35,7 +35,7 @@ int main(int argc, char **argv)
   factory.registerFromPlugin(loader.getOSName("nc_person_detected"));
   factory.registerFromPlugin(loader.getOSName("nc_perceive_person"));
   factory.registerFromPlugin(loader.getOSName("nc_turn_node"));
-  factory.registerFromPlugin(loader.getOSName("nc_follow_point"));
+  factory.registerFromPlugin(loader.getOSName("nc_follow_person"));
   //factory.registerFromPlugin(loader.getOSName("nc_ball_detected"));
   //factory.registerFromPlugin(loader.getOSName("nc_perceive_ball"));
 
