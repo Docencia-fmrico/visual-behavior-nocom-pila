@@ -12,3 +12,21 @@ La práctica se compone de tres partes:
 3. Comportamiento mixto: El robot debe seguir tanto a las personas como a las pelotas que perciba con la cámara, teniendo prioridad la pelota.
 
 Entrega: Viernes 11 de Marzo.
+
+
+## Seguimiento de la pelota
+
+El *behavior tree* utilizado para el seguimiento de la pelota ha sido el siguiente:
+![Image text](https://github.com/Docencia-fmrico/visual-behavior-nocom-pila/blob/main/raw/Behavior_tree_ball.png)
+
+
+## Seguimiento de una persona
+
+El *behavior tree* empleado en este caso para el seguimiento de una pelota ha sido este:
+![Image text](https://github.com/Docencia-fmrico/visual-behavior-nocom-pila/blob/main/raw/Behavior_tree_person.png)
+
+
+## Comportamiento mixto
+
+Para la versión completa del comportamiento visual del kobuki, el *behavior tree* final resultante de "combinar" los dos anteriores y adaptarlo a los requerimientos de actuación ha sido el próximo:
+![Image text](https://github.com/Docencia-fmrico/visual-behavior-nocom-pila/blob/main/raw/Behavior_tree_complete.png)
