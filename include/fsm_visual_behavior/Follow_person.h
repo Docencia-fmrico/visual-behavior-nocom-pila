@@ -18,13 +18,18 @@ namespace fsm_visual_behavior
 class Follow_person : public BT::ActionNodeBase
 {
 public:
-    explicit Follow_person(const std::string& name);
+    explicit Follow_person(const std::string& name, const BT::NodeConfiguration& config);
 
     void halt();
 
     BT::NodeStatus tick();
     void PointCallbackPerson(const std_msgs::Float64::ConstPtr& msg);
     void PointPxCallbackPerson(const std_msgs::Int64::ConstPtr& msg);
+
+    static BT::PortsList providedPorts()
+    {
+        return { BT::InputPort<std::string>("point")};
+    }
     
 private:
     const float ADVANCE_SPEED = 0.1;

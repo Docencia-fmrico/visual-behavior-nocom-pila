@@ -7,8 +7,8 @@
 namespace fsm_visual_behavior
 {
 
-Perceive_person::Perceive_person(const std::string& name)
-: BT::ActionNodeBase(name, {}), counter_(0)
+Perceive_person::Perceive_person(const std::string& name, const BT::NodeConfiguration & config)
+: BT::ActionNodeBase(name, config), counter_(0)
 {
   dist_sub = nh_.subscribe("/dist_person", 1, &Perceive_person::PerceivePersonCallback, this);
 }
@@ -23,6 +23,8 @@ BT::NodeStatus
 Perceive_person::tick()
 {
     ROS_INFO("Perceive_person tick");
+
+    setOutput<std::string>("person", "hola");
 
     std::cerr << dist << std::endl;
 

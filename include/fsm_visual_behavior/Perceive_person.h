@@ -17,13 +17,18 @@ namespace fsm_visual_behavior
 class Perceive_person : public BT::ActionNodeBase
 {
 public:
-    explicit Perceive_person(const std::string& name);
+    explicit Perceive_person(const std::string& name, const BT::NodeConfiguration& config);
 
     void halt();
 
     BT::NodeStatus tick();
 
     void PerceivePersonCallback(const std_msgs::Float64::ConstPtr& msg);
+
+    static BT::PortsList providedPorts()
+    {
+        return { BT::OutputPort<std::string>("person")};
+    }
 
 private:
     const float TURNING_SPEED = 0.35;

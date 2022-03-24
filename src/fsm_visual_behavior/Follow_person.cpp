@@ -7,8 +7,8 @@
 namespace fsm_visual_behavior
 {
 
-Follow_person::Follow_person(const std::string& name)
-: BT::ActionNodeBase(name, {}), counter_(0)
+Follow_person::Follow_person(const std::string& name, const BT::NodeConfiguration & config)
+: BT::ActionNodeBase(name, config), counter_(0)
 {
   vel_pub_ = n_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 1);
   dist_point_person = n_.subscribe("/dist_person", 1, &Follow_person::PointCallbackPerson, this);
@@ -41,6 +41,9 @@ Follow_person::tick()
     ROS_INFO("Follow_person tick");
 
     //std::cerr << dist << std::endl;
+
+    std::string object = getInput<std::string>("point").value();
+    std::cerr << object << std::endl;
 
     geometry_msgs::Twist msg;
     if(0.5 < dist < 2.5)
