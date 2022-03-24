@@ -3,6 +3,7 @@ project(fsm_visual_behavior)
 
 # set(CMAKE_BUILD_TYPE Debug)
 
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CONFIG_PATH ${CMAKE_MODULE_PATH}  "${CMAKE_CURRENT_LIST_DIR}/cmake")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CONFIG_PATH}")
 
@@ -53,6 +54,8 @@ include_directories(
   ${ZMQ_INCLUDE_DIRS}
 )
 
+add_library(pid SHARED src/fsm_visual_behavior/PIDController.cpp)
+
 add_library(nc_person_detected SHARED src/fsm_visual_behavior/Person_detected.cpp)
 add_library(nc_perceive_person SHARED src/fsm_visual_behavior/Perceive_person.cpp)
 add_library(nc_ball_detected SHARED src/fsm_visual_behavior/Ball_detected.cpp)
@@ -71,7 +74,7 @@ list(APPEND plugin_libs
 )
 
 foreach(bt_plugin ${plugin_libs})
-  target_link_libraries(${bt_plugin} ${catkin_LIBRARIES})
+  target_link_libraries(${bt_plugin} ${catkin_LIBRARIES} pid)
   target_compile_definitions(${bt_plugin} PRIVATE BT_PLUGIN_EXPORT)
 endforeach()
 
@@ -105,4 +108,5 @@ roslint_cpp(
   include/fsm_visual_behavior/Follow_person.h src/fsm_visual_behavior/Follow_person.cpp
   include/fsm_visual_behavior/Follow_ball.h src/fsm_visual_behavior/Follow_ball.cpp
   include/fsm_visual_behavior/Turn.h src/fsm_visual_behavior/Turn.cpp
+  include/fsm_visual_behavior/PIDController.hpp src/fsm_visual_behavior/PIDController.cpp
 )

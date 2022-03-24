@@ -3,6 +3,7 @@
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
+#include "fsm_visual_behavior/PIDController.hpp"
 
 #include <string>
 #include "ros/ros.h"
@@ -33,6 +34,7 @@ private:
 
     float dist;
     int counter_;
+    PIDController pid1_;
 };
 
 }

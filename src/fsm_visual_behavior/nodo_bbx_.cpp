@@ -57,7 +57,7 @@ void callback_bbx(const sensor_msgs::ImageConstPtr& image, const darknet_ros_msg
     if (box.Class == "sports ball" && dist <= 2.5 && dist != 0)
     {
       dist_b = dist;
-      px_b = px;
+      px_b = px - 300;
       ball = true;
       ROS_INFO("HAY BALL");
       std::cerr << px << std::endl;
@@ -68,7 +68,7 @@ void callback_bbx(const sensor_msgs::ImageConstPtr& image, const darknet_ros_msg
     if (box.Class == "person" && dist <= 2.5 && dist != 0)
     {
       dist_p = dist;
-      px_p = px;
+      px_p = px - 300;
       person = true;
       ROS_INFO("HAY PERSONA");
       std::cerr << px << std::endl;

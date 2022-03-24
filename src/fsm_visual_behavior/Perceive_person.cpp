@@ -8,7 +8,7 @@ namespace fsm_visual_behavior
 {
 
 Perceive_person::Perceive_person(const std::string& name)
-: BT::ActionNodeBase(name, {}), counter_(0)
+: BT::ActionNodeBase(name, {}), counter_(0), pid1_(0.0, 1.0, 0.0, 1.0)
 {
   dist_sub = nh_.subscribe("/dist_person", 1, &Perceive_person::PerceivePersonCallback, this);
 }
